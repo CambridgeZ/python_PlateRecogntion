@@ -50,7 +50,7 @@ class Surface(ttk.Frame):
     pic_source = ""
     color_transform = {"green": ("绿牌", "#55FF55"), "yello": ("黄牌", "#FFFF00"), "blue": ("蓝牌", "#6666FF")}
 
-    def __init__(self, win):
+    def __init__(self, win):#初始化
         ttk.Frame.__init__(self, win)
         frame_left = ttk.Frame(self)
         frame_right1 = ttk.Frame(self)
@@ -63,19 +63,19 @@ class Surface(ttk.Frame):
         self.pic_path3 = ""
         self.cameraflag = 0
 
-        top.pack(side=TOP, expand=1, fill=tk.Y)
-        reset_ctl = ttk.Button(top, text="重置窗口", width=10, command=self.reset)
-        reset_ctl.pack(side=LEFT)
+        top.pack(side=TOP, expand=1, fill=tk.Y)# 顶部
+        reset_ctl = ttk.Button(top, text="重置窗口", width=40, command=self.reset)# 重置窗口
+        reset_ctl.pack(side=LEFT)# 重置窗口
         # L1 = ttk.Label(top, text='网络地址:')
         # L1.pack(side=LEFT)
-        self.p1 = StringVar()
+        # self.p1 = StringVar()
         # self.user_text = ttk.Entry(top, textvariable=self.p1, width=45)
         # self.user_text.pack(side = LEFT)
         # self.user_text.bind('<Key-Return>', self.url_pic2)
         # url_ctl = ttk.Button(top, text="识别网络图片", width=20, command=self.url_pic)
         # url_ctl.pack(side=RIGHT)
 
-        self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
+        self.pack(fill=tk.BOTH, expand=tk.YES, padx="15", pady="15")
         frame_left.pack(side=LEFT, expand=1)
         frame_right1.pack(side=TOP, expand=1, fill=tk.Y)
         frame_right2.pack(side=RIGHT, expand=0)
@@ -231,7 +231,7 @@ class Surface(ttk.Frame):
             self.r_ct2.configure(text="")
             self.color_ct2.configure(state='disabled')
 
-    def pic(self, pic_path):
+    def pic(self, pic_path):# 识别图片
         self.apistr = None
         img_bgr = img_math.img_read(pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
@@ -268,7 +268,7 @@ class Surface(ttk.Frame):
             # img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
         print(localtime, "|", color_c, r_c, "|", color_color, r_color, "|", self.pic_source)
 
-    def from_pic(self):
+    def from_pic(self):# 选择图片
         self.thread_run = False
         self.thread_run2 = False
         self.cameraflag = 0
@@ -277,7 +277,7 @@ class Surface(ttk.Frame):
         self.pic_source = "本地文件：" + self.pic_path
         self.pic(self.pic_path)
 
-    def from_pic2(self):
+    def from_pic2(self):# 选择图片
         self.pic_path3 = askdirectory(title="选择识别路径")
         self.get_img_list(self.pic_path3)
         self.thread7 = threading.Thread(target=self.pic_search, args=(self,))
@@ -285,7 +285,7 @@ class Surface(ttk.Frame):
         self.thread7.start()
         self.thread_run7 = True
 
-    def get_img_list(self, images_path):
+    def get_img_list(self, images_path):# 获取图片列表
         self.count = 0
         self.array_of_img = []
         for filename in os.listdir(images_path):
@@ -300,7 +300,7 @@ class Surface(ttk.Frame):
                 pass
         print(self.array_of_img)
 
-    def pic_search(self, self2):
+    def pic_search(self, self2):# 批量识别
         self.thread_run7 = True
         print("开始批量识别")
         wait_time = time.time()
@@ -324,11 +324,11 @@ class Surface(ttk.Frame):
                 print("批量识别结束")
                 return
 
-    def getuser(self):
-        user = self.user_text.get()
-        return user
+    # def getuser(self):# 获取用户
+    #     user = self.user_text.get()
+    #     return user
 
-    def show_img_pre(self):
+    def show_img_pre(self):#展示预处理图片
         if self.thread_run:
             return
         self.thread_run = False
@@ -343,7 +343,7 @@ class Surface(ttk.Frame):
             return
         self.thread_run = False
         self.thread_run2 = False
-        self.p1.set("")
+        # self.p1.set("")
         img_bgr3 = img_math.img_read("pic/hy.png")
         self.imgtk2 = self.get_imgtk(img_bgr3)
         self.image_ctl.configure(image=self.imgtk2)
