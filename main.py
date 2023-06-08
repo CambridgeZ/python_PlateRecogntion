@@ -9,7 +9,6 @@ import cv2
 import lib.img_function as predict
 import lib.img_math as img_math
 import lib.img_excel as img_excel
-import lib.img_sql as img_sql
 import lib.screencut as screencut
 from threading import Thread
 from tkinter import ttk
