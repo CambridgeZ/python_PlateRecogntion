@@ -10,7 +10,6 @@ import lib.img_function as predict
 import lib.img_math as img_math
 import lib.img_excel as img_excel
 import lib.img_sql as img_sql
-# from lib.img_api import api_pic
 import lib.screencut as screencut
 from threading import Thread
 from tkinter import ttk
@@ -129,7 +128,7 @@ class Surface(ttk.Frame):
         self.clean()
         self.apistr = None
         img_excel.create_excel()
-        img_sql.create_sql()
+        # img_sql.create_sql()
 
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
