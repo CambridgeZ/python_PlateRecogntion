@@ -8,7 +8,6 @@ import tkinter as tk
 import cv2
 import lib.img_function as predict
 import lib.img_math as img_math
-import lib.img_excel as img_excel
 
 from threading import Thread
 from tkinter import ttk
@@ -126,7 +125,7 @@ class Surface(ttk.Frame):
 
         self.clean()
         self.apistr = None
-        img_excel.create_excel()
+        # img_excel.create_excel()
         # img_sql.create_sql()
 
         self.predictor = predict.CardPredictor()
@@ -265,9 +264,9 @@ class Surface(ttk.Frame):
                 # self.api_ctl2(pic_path)
                 return
             value = [localtime, color_c, r_c, color_color, r_color, self.apistr, self.pic_source]
-            img_excel.excel_add(value)
+            # img_excel.excel_add(value)
             # img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
-        print(localtime, "|", color_c, r_c, "|", color_color, r_color, "| ", self.apistr, "|", self.pic_source)
+        print(localtime, "|", color_c, r_c, "|", color_color, r_color, "|", self.pic_source)
 
     def from_pic(self):
         self.thread_run = False
